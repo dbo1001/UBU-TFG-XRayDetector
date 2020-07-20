@@ -1,0 +1,219 @@
+\apendice{Plan de Proyecto Software}
+
+\section{Introducción}
+
+En esta sección se describirá el desarrollo temporal del proyecto y un estudio de viabilidad.
+
+En el desarrollo temporal se divide el trabajo por fases o etapas y el estudio de viabilidad se puede dividir en dos apartados: viabilidad económica y viabilidad legal.
+
+\section{Desarrollo temporal}
+
+Las fases del desarrollo temporal de este proyecto son:
+
+\begin{itemize}
+    \item \textbf{Fase 1:} Investigación del estado del arte sobre aplicación de redes neuronales a la detección de defectos en imágenes (incluyendo las de rayos-X): revisión de algoritmos y de implementaciones.
+    \item \textbf{Fase 2:} Configuración de la red neuronal escogida (modelo, impresión, etc.).
+    \item \textbf{Fase 3:} Entrenamiento de una red neuronal con imágenes de radiografías: configuración, adaptación, evaluación de parámetros, etc.
+    \item \textbf{Fase 4:} Creación de una aplicación para la utilización dinámica de la red: aplicaciones amigables (web o escritorio) para poder utilizar el sistema inteligente en la Fase 2.
+\end{itemize}
+
+Para llevar a cabo estas fases he seguido una metodología \textit{Scrum} donde se realizan \textit{sprints} que tienen unos objetivos. La duración de cada \textit{sprint} depende de las tareas asignadas a él que se irán creando y realizando a lo largo del proyecto.
+
+Se ha utilizado \textit{GitHub} para el seguimiento del proyecto. El repositorio del proyecto, y las \textit{issues} realizadas se encuentra en el \url{https://github.com/nuf1001/XRayDetector}
+
+\subsection{Sprint 0}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Investigar sobre segmentación de imágenes de rayos X.
+    \item Mirar convocatoria prototipos orientados al mercado.
+    \item Investigar sobre la documentación en \LaTeX{}.
+\end{itemize}
+
+En este sprint se realizaron las primeras investigaciones sobre el tema del proyecto.
+
+La convocatoria prototipos orientados al mercado tiene como objetivo desarrollar actividades de transferencia de conocimiento entre el colectivo de estudiantes de la Universidad de Burgos mediante la materialización y desarrollo de un prototipo, a través de proyectos fin de grado o fin de máster.
+
+\subsection{Sprint 1}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Probar código correspondiente al artículo \cite{articulo2} en Windows.
+    \item Probar código correspondiente al artículo \cite{articulo2} en Linux.
+    \item Empezar introducción de la documentación.
+\end{itemize}
+
+En este sprint se prueba el código de un artículo relacionado con nuestro proyecto \cite{articulo2} y se inicia con la documentación.
+
+Este articulo es que hemos utilizado de base para empezar a desarrollar el proyecto. Funcionaba en los dos sistemas operativos, pero se acabó desarrollando en Windows 10 por comodidad.
+
+\subsection{Sprint 2}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Empezar con el código de la app de escritorio.
+    \item Entrenar la red en el ordenador Alpha de la universidad.
+    \item Investigar para la app de escritorio.
+    \item Crear diseño de la app de escritorio.
+\end{itemize}
+
+En este sprint se empieza con el diseño y el código de la aplicación de escritorio. También se entrena la red con un ordenador más potente al que me dio acceso la universidad. Esta última tarea tardó bastante más de lo esperado en realizarse por problemas con la red y el ordenador.
+
+\subsection{Sprint 3}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Averiguar/investigar cuál es la salida de la red al evaluar una imagen.
+    \item Hacer gráficas del \textit{loss} del entrenamiento.
+\end{itemize}
+
+En este sprint se evalúa la salida y se crean las gráficas con los valores obtenidos. Estas gráficas son las que podemos ver en el apartado 5.2 de la memoria.
+
+\subsection{Sprint 4}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Primer boceto de la memoria.
+    \item Memoria - Conceptos teóricos.
+    \item Memoria - Técnicas y herramientas.
+    \item Memoria - Aspectos relevantes del desarrollo del proyecto.
+    \item Memoria - Trabajos relacionados.
+    \item Memoria - Conclusión.
+\end{itemize}
+
+En este sprint se empieza con la documentación final de la memoria.
+
+\subsection{Sprint 5}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Primer boceto de los anexos.
+    \item Anexos - Especificación de diseño.
+    \item Anexos - Documentación técnica de programación.
+    \item Anexos - Documentación de usuario.
+\end{itemize}
+
+En este sprint se empieza con la documentación final de los anexos.
+
+\subsection{Sprint 6}
+
+Tareas realizadas:
+
+\begin{itemize}
+    \item Entrega del TFG.
+    \item Subir código.
+\end{itemize}
+
+Este es el último sprint y en él terminamos con toda la entrega del proyecto.
+
+\section{Estudio de viabilidad}
+
+En este apartado se abordará la viabilidad económica y legal de este proyecto.
+
+\subsection{Viabilidad económica}
+
+En este apartado, simularemos el coste del proyecto que tendría en una empresa, o en una venta al público.
+
+\subsubsection{Coste personal}
+Este proyecto cuenta con dos \textbf{profesores contratados} durante 6 meses para este proyecto. Por cada profesor se asignan 0.5 créditos, por lo que el coste\footnote{\url{https://www.ubu.es/sites/default/files/portal_page/files/pdi_laboral_2019.pdf}} por tutor consideramos que es el siguiente:
+\begin{itemize}
+    \item Sueldo ayudante doctor: 26445.24 euros anuales. Más 2 trienios más el complemento de mejora: 26445.24 + 1260.58 + 1110.71 = 28816.52. En total, imparte 24 créditos por lo que el coste anual por crédito es de 1200.68 euros. El coste total es el siguiente:
+    
+    \begin{center}
+        1200.68 \(\cdot\) 0.5 créditos = 600.34 \euro
+    \end{center}
+    
+    \item Sueldo medio anual de un titular: 42220.34 euros anuales. En total imparte 24 créditos por lo que el coste anual por crédito es de 1759.18 euros. El coste total es el siguiente:
+    
+    \begin{center}
+        1759.18 \(\cdot\) 0.5 créditos = 879.59 \euro
+    \end{center}
+    
+\end{itemize}
+
+Por último, el desarrollador del proyecto. Supondremos un salario bruto de 2000 euros para el desarrollador. Habrá que tener en cuenta los gastos de seguridad social.
+
+\begin{itemize}
+    \item Cotización por parte de la empresa: 23.6\%
+    \item Cotización por parte del empleado: 4.7\%
+    \item \textbf{Total: 28.3\%}
+\end{itemize}
+
+Por lo tanto, el coste del desarrollador será:
+
+\tablaSmallSinColores{Costes de personal}{p{6.4cm} p{2.15cm} p{8cm}}{costespersonales}{
+  \multicolumn{1}{p{4.5cm}}{\textbf{Concepto}} & \textbf{Coste{}}\\
+ }{
+  Salario mensual neto  & \multicolumn{1}{r}{1217.25}\\
+  Retención IRPF (15\%) & \multicolumn{1}{r}{216.75}\\
+  Seguridad social  (28.3\%) & \multicolumn{1}{r}{566}\\
+  Salario mensual bruto  & \multicolumn{1}{r}{2000}\\\hline
+  \textbf{Coste total (6 meses)}  & \multicolumn{1}{r}{12000}\\
+  }
+  
+\subsubsection{Coste informático}
+
+El coste informático es mínimo. Se ha utilizado un único portátil personal. Su coste fue de 750\euro y se supone una amortización de 4 años. Para ello se contabilizará únicamente el cose amortizado. 
+
+ \[\frac{750}{12 \cdot 4} \cdot 6 = 93.75 \euro\]
+
+\subsubsection{Ingresos}
+
+Para este proyecto se ha contado con la concesión de la beca prototipos de la Oficina de Transmisión de Información de la Universidad de Burgos. La cuantía de la beca ha sido de 1000 euros, por lo que estos serán los ingresos del proyecto.
+
+\subsubsection{Coste Total}
+
+El coste total del proyecto será:
+
+\tablaSmallSinColores{Coste Total}{p{6.4cm} p{2.15cm} p{8cm}}{costetotal}{
+  \multicolumn{1}{p{4.5cm}}{\textbf{Concepto}} & \textbf{Coste{}}\\
+ }
+ {
+  Coste desarrollador  & \multicolumn{1}{r}{12000}\\
+  Costes Tutores(15\%) & \multicolumn{1}{r}{1479.93}\\
+  Hardware & \multicolumn{1}{r}{93.75}\\\hline
+  Beca prototipos  & \multicolumn{1}{r}{-1000}\\\hline
+  \textbf{Coste total (6 meses)}  & \multicolumn{1}{r}{12573.68}\\
+  }
+
+\subsection{Viabilidad legal}
+
+Todo el código utilizado es de dominio público. Las bibliotecas de \textit{Python} utilizadas tienen distintas licencias por lo que hay que comparar su compatibilidad.
+
+\subsubsection{Bibliotecas Python}
+
+En primer lugar, vamos a ver cuáles son las licencias de las bibliotecas de \textit{Python} usadas en nuestro proyecto, ver tabla \ref{licenciasPython}:
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} p{9cm}}
+		    \hline
+			Biblioteca & Versión & Licencia\\ \hline \hline
+			Keras & 2.1.3 & Licencia MIT (\textit{Massachusetts Institute of Technology}) o licencia X11. Es una licencia de software libre permisiva, es decir, impone muy pocas limitaciones en la reutilización.\\ \hline
+			TensorFlow & 1.3.0 & Licencia Apache. Es una licencia de software libre permisiva, es decir, requiere la conservación del aviso de derecho de autor y el descargo de responsabilidad, pero no es una licencia copyleft, ya que no requiere la redistribución del código fuente cuando se distribuyen versiones modificadas.\\ \hline
+			NumPy & 1.18.1 & Licencia BSD (\textit{Berkeley Software Distribution}). Es una licencia de software libre permisiva, es decir, impone muy pocas limitaciones en la reutilización.\\ \hline
+			SciPy & 1.1.0 & Licencia BSD (\textit{Berkeley Software Distribution}). Es una licencia de software libre permisiva, es decir, impone muy pocas limitaciones en la reutilización.\\ \hline
+			Matplotlib & 3.1.3 & Tiene su propia licencia libre. Es una licencia que usa código compatible con BSD (\textit{Berkeley Software Distribution}), y su licencia se basa en la licencia de PSF (\textit{Python Software Foundation}) que es una licencia de software libre permisiva ( cumple con los requisitos OSI para ser declarada licencia de software libre).\\ \hline
+			PIL & 7.0.0 & Licencia de \textit{Python Imaging Library}. Es una licencia de software libre permisiva\\ \hline
+			Scikit-image & 0.16.2 & Licencia BSD (\textit{Berkeley Software Distribution}). Es una licencia de software libre permisiva, es decir, impone muy pocas limitaciones en la reutilización.\\ \hline
+			OpenCV & 4.1.0 & Licencia BSD (\textit{Berkeley Software Distribution}). Es una licencia de software libre permisiva, es decir, impone muy pocas limitaciones en la reutilización.\\ \hline
+			Distutils & 3.6.10 & Licencia BSD (\textit{Berkeley Software Distribution}). Es una licencia de software libre permisiva, es decir, impone muy pocas limitaciones en la reutilización.\\ \hline
+		\end{tabular}
+		\caption{Licencias bibliotecas \textit{Python}}
+		\label{licenciasPython}
+	\end{center}
+\end{table}
+
+Todas las licencias son compatibles entre sí por lo que todo el código fuente de la aplicación se ha licenciado bajo BSD (\textit{Berkeley Software Distribution}).
+
+\subsubsection{Imágenes GDXRay}
+
+El conjunto de imágenes es el descrito en \cite{GDXray:imagenes}, en este artículo la viabilidad legal se describe como: ``(...)Las imágenes están organizadas en una base de datos pública llamada GDXray que puede ser utilizado de forma gratuita, pero solo para fines educativos y de investigación(...)''(p.1).
+
+Por lo tanto, para la realización de este proyecto no habría ningún problema con la utilización de dichas imágenes.

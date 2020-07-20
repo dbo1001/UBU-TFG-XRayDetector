@@ -1,0 +1,139 @@
+\apendice{Especificación de Requisitos}
+
+\section{Introducción}
+
+En esta sección se abordarán los diferentes objetivos y requisitos del proyecto. Se presentarán tanto los requisitos globales del proyecto, como los requisitos funcionales y casos de uso de la aplicación.
+
+
+\section{Objetivos generales}
+
+Entrenar una red neuronal para obtener un modelo bien entrenado que sepa diferenciar correctamente las imperfecciones en las imágenes de rayos-x.
+ 
+Crear una aplicación amigable y sencilla de utilizar para el usuario que cargue el modelo obtenido y te enseñe donde se encuentra los defectos, en el caso de que los haya.
+
+\section{Catálogo de requisitos}
+
+En esta sección se enumerarán los requisitos funcionales de nuestra aplicación.
+
+\begin{itemize}
+
+    \item \textbf{RF-1} La aplicación tiene que permitir detectar los defectos de una pieza metálica a partir de una imagen de rayos-x.
+    \begin{itemize}
+	    \item \textbf{RF-1.1} El usuario podrá elegir la imagen que quiera predecir.
+	    \item \textbf{RF-1.2} El usuario podrá ver la imagen con los defectos destacados con rectángulos.
+	\end{itemize}
+	
+	\item \textbf{RF-2} La aplicación tiene que permitir cargar imágenes para trabajar con ellas.
+	\begin{itemize}
+	\item \textbf{RF-2.1} El usuario podrá elegir la imagen de cualquier ruta que quiere cargar en la aplicación.
+	\end{itemize}
+	
+	\item \textbf{RF-3} La aplicación tiene que permitir enseñar las máscaras de la imagen que ha sido evaluada.
+    \begin{itemize}
+	    \item \textbf{RF-3.1} El usuario podrá visualizar todas las máscaras generadas por el programa.
+	\end{itemize}
+	
+	\item \textbf{RF-4} La aplicación tiene que permitir ver información sobre los defectos de la imagen que ha sido evaluada.
+    \begin{itemize}
+	    \item \textbf{RF-4.1} El usuario podrá visualizar el \textit{Bounding Box}, la clase y la marca de cada defecto detectado.
+	\end{itemize}
+\end{itemize}
+
+\section{Especificación de requisitos}
+
+En esta sección se mostrar y desarrolla el diagrama de casos de uso resultante.
+
+\subsection{Diagramas de caso de uso}
+
+\imagen{caso_de_uso}{Diagrama de casos de uso de la aplicación}
+
+%Caso de uso 0
+\tablaSmallSinColores{Caso de uso 0: Cargar imagen.}{p{3cm} p{.75cm} p{9.5cm}}{tablaUC0}{
+  \multicolumn{3}{l}{Caso de uso 0: Cargar imagen.} \\
+ }
+ {
+  Descripción                            & \multicolumn{2}{p{10.25cm}}{Permite al usuario cargar una imagen de su equipo a la aplicación.} \\\hline
+  \multirow{2}{3.5cm}{Requisitos}   &\multicolumn{2}{p{10.25cm}}{RF-2} \\\cline{2-3}
+                                         & \multicolumn{2}{p{10.25cm}}{RF-2.1}
+                                         \\\hline
+  Precondiciones                         &  \multicolumn{2}{p{10.25cm}}{Ninguna}   \\\hline
+  \multirow{2}{3.5cm}{Secuencia normal}  & Paso & Acción \\\cline{2-3}
+                                         & 1    & El usuario pincha el botón ``Cargar imagen''.
+  \\\cline{2-3}
+                                         & 2    & Se despliega un menú de búsqueda de archivos.
+  \\\cline{2-3}
+                                         & 3    & Se eligen la imagen y se da a ``Abrir''.
+    \\\cline{2-3}
+                                         & 4    & Se cargan la imagen dentro de la aplicación.
+                                         \\\hline
+  Postcondiciones                        & \multicolumn{2}{p{10.25cm}}{La imagen aparece en pantalla.} \\\hline
+  Excepciones                        & \multicolumn{2}{p{10.25cm}}{Error al cargar la imagen. El archivo no es una imagen. El directorio no existe.}\\\hline
+  Importancia                            & Alta \\\hline
+  Urgencia                               & Alta \\
+}
+
+%Caso de uso 1
+\tablaSmallSinColores{Caso de uso 1: Detectar defectos.}{p{3cm} p{.75cm} p{9.5cm}}{tablaUC1}{
+  \multicolumn{3}{l}{Caso de uso 1: Detectar defectos.} \\
+ }
+ {
+  Descripción                            & \multicolumn{2}{p{10.25cm}}{Permite al usuario obtener la predicción de los defectos de la imagen cargada.} \\\hline
+  \multirow{2}{3.5cm}{Requisitos}   &\multicolumn{2}{p{10.25cm}}{RF-1} \\\cline{2-3}
+                                         & \multicolumn{2}{p{10.25cm}}{RF-1.1} \\\cline{2-3}
+                                         & \multicolumn{2}{p{10.25cm}}{RF-1.2}
+                                         \\\hline
+  Precondiciones                         &  \multicolumn{2}{p{10.25cm}}{Tener una imagen cargada}   \\\hline
+  \multirow{2}{3.5cm}{Secuencia normal}  & Paso & Acción \\\cline{2-3}
+                                         & 1    & El usuario pincha el botón ``Detectar defectos''.
+  \\\cline{2-3}
+                                         & 2    & Aparece la predicción en pantalla.
+                                         \\\hline
+  Postcondiciones                        & \multicolumn{2}{p{10.25cm}}{La imagen aparece en pantalla con los defectos marcados con rectángulos.} \\\hline
+  Excepciones                        & \multicolumn{2}{p{10.25cm}}{No hay una imagen cargada.}\\\hline
+  Importancia                            & Alta \\\hline
+  Urgencia                               & Alta \\
+}
+
+%Caso de uso 2
+\tablaSmallSinColores{Caso de uso 2: Visualizar máscaras.}{p{3cm} p{.75cm} p{9.5cm}}{tablaUC2}{
+  \multicolumn{3}{l}{Caso de uso 2: Visualizar máscaras.} \\
+ }
+ {
+  Descripción                            & \multicolumn{2}{p{10.25cm}}{Permite al usuario visualizar las máscaras de la imagen creadas.} \\\hline
+  \multirow{2}{3.5cm}{Requisitos}   &\multicolumn{2}{p{10.25cm}}{RF-3} \\\cline{2-3}
+                                         & \multicolumn{2}{p{10.25cm}}{RF-3.1}
+                                         \\\hline
+  Precondiciones                         &  \multicolumn{2}{p{10.25cm}}{Tener una imagen cargada y que ya se haya hecho la detección de defectos.}   \\\hline
+  \multirow{2}{3.5cm}{Secuencia normal}  & Paso & Acción \\\cline{2-3}
+                                         & 1    & El usuario pincha el botón ``Máscaras''.
+  \\\cline{2-3}
+                                         & 2    & Aparece las máscaras en una nueva ventana.
+                                         \\\hline
+  Postcondiciones                        & \multicolumn{2}{p{10.25cm}}{Aparecen las máscaras creadas.} \\\hline
+  Excepciones                        & \multicolumn{2}{p{10.25cm}}{No hay defectos en la imagen.}\\\hline
+  Importancia                            & Media \\\hline
+  Urgencia                               & Media \\
+}
+
+%Caso de uso 3
+\tablaSmallSinColores{Caso de uso 3: Visualizar información
+de los defectos.}{p{3cm} p{.75cm} p{9.5cm}}{tablaUC3}{
+  \multicolumn{3}{l}{Caso de uso 3: Visualizar información
+de los defectos.} \\
+ }
+ {
+  Descripción                            & \multicolumn{2}{p{10.25cm}}{Permite al usuario visualizar el \textit{Bounding Box}, la clase y la marca de cada defecto detectado.} \\\hline
+  \multirow{2}{3.5cm}{Requisitos}   &\multicolumn{2}{p{10.25cm}}{RF-4} \\\cline{2-3}
+                                         & \multicolumn{2}{p{10.25cm}}{RF-4.1}
+                                         \\\hline
+  Precondiciones                         &  \multicolumn{2}{p{10.25cm}}{Tener una imagen cargada y que ya se haya hecho la detección de defectos.}   \\\hline
+  \multirow{2}{3.5cm}{Secuencia normal}  & Paso & Acción \\\cline{2-3}
+                                         & 1    & El usuario pincha el botón ``Información''.
+  \\\cline{2-3}
+                                         & 2    & Aparece la información en una nueva ventana.
+                                         \\\hline
+  Postcondiciones                        & \multicolumn{2}{p{10.25cm}}{Aparece la información de los defectos que se hayan detectado.} \\\hline
+  Excepciones                        & \multicolumn{2}{p{10.25cm}}{No hay defectos en la imagen.}\\\hline
+  Importancia                            & Media \\\hline
+  Urgencia                               & Media \\
+}

@@ -1,0 +1,46 @@
+\capitulo{6}{Trabajos relacionados}
+
+En este apartado explicaremos algunos trabajos y conferencias relacionados a nuestro proyecto.
+
+\section{Artículos científicos}
+
+\subsection{\textit{Automatic Localization of Casting Defects with Convolutional Neural Networks}}
+
+Max Ferguson, Ronay Ak, Yung-Tsun Tina Lee, Kincho H. Law publicaron un artículo \cite{articulo:2} donde propusieron la detección de defectos en piezas de fundición de metal mediante la utilización de redes neuronales convolicionales (CNN). Este tipo de redes han mostrado recientemente un gran rendimiento tanto en tareas de clasificación de imágenes como de localización. 
+
+El éste artículo se comparan diferentes arquitecturas de CNN para localizar los defectos. Y utilizan el aprendizaje de transferencia ara permitir que los modelos de localización CNN se capaciten en un conjunto de datos relativamente pequeño.
+
+En un enfoque alternativo, entrenan un modelo de clasificación de defectos en una serie de imágenes de defectos y luego usan un método clasificador de ventana deslizante\footnote{Este método consiste en ir escaneando una imagen mediante dicha ventana. A cada desplazamiento el clasificador predecirá ahí hay un defecto o no. Al escanear la imagen completa, esta se reduce a una cierta escala para continuar el escaneo, y realiza este proceso continuamente hasta que la imagen escaneada sea menor que la ventana de deslizamiento.} para desarrollar un modelo de localización simple. Comparan la precisión de localización y el rendimiento computacional de cada técnica.
+
+\subsection{\textit{Small Defect Detection Using Convolutional Neural Network Features and Random Forests}}
+
+Escrito por Xinghui Dong, Chris J. Taylor y Tim F. Cootes \cite{articulo:1}. El objetivo de este artículo es etiquetar los píxeles correspondientes a una pequeñas anomalías en una región con imágenes con un mínimo de falsos positivos, importante en aplicaciones como la inspección industrial. Su enfoque es ejecutar un clasificador de ventana deslizante sobre la imagen. 
+
+Las redes totalmente convolucionales (\textit{Fully Convolutional Networks} - FCN) recientes, como U-Net, se pueden entrenar para identificar píxeles correspondientes a anomalías dado un conjunto de entrenamiento adecuado, en este artículo muestran que se pueden obtener mejores resultados reemplazando la capa final de la red con un \textit{Random Forest} (RF) utilizando características muestreadas de las capas de red anteriores.
+
+También demuestran que, en lugar de limitar la umbral de la imagen de probabilidad resultante para identificar defectos, es mejor calcular las regiones extremas máximamente estables (\textit{Maximally Stable Extremal Regions} - MSER).
+
+\section{Conferencias}
+
+\subsection{\textit{Imbalanced Learning Ensembles for Defect Detection in X-Ray Images}}
+
+Conferencia hecha por José Francisco Díez Pastor, César García Osorio, Víctor Barbero García y Alan Blanco Álamo en Amsterdam, Los Países Bajos en el 2013 \cite{ieaaieDiez-PastorGBB13}.
+
+Las imágenes utilizadas en este trabajo son muy variables (varias piezas diferentes, diferentes vistas, variabilidad introducida por el proceso de inspección, como el posicionamiento de la pieza). Debido a esta variabilidad, optaron por la técnica de ventana deslizante, un enfoque basado en la minería de datos.
+
+Tuvieron un enfoque especial en el aprendizaje de conjuntos de dato no balanceados y llevaron a cabo experimentos con varios tamaños de ventana, varios algoritmos de selección de características y diferentes algoritmos de clasificación. En los resultados podemos ver que el ensacado logró resultados significativamente mejores que los árboles de decisión por sí mismos.
+
+\subsection{Segmentación de defectos en piezas de fundido usando umbrales adaptativos y ensembles}
+
+Conferencia hecha por José Francisco Díez Pastor, Alvar Arnaiz González, César García Osorio y Juan José Rodríguez en Zaragoza, España en el 2014 \cite{ESTYLF2014a}.
+
+La conferencia se centra en el desarrollo de nuevos algoritmos de construcción de \textit{ensembles} (la combinación de varios clasificadores o regresores), sobre todo haciendo hincapié a las técnicas de incremento de la diversidad en \textit{ensembles} homogéneos (cuando todos los miembros están construidos usando la misma técnica).
+
+En la primera parte se presenta un estudio de los métodos más representativos de las distintas técnicas de construcción de \textit{ensembles}, aprendizaje en conjuntos desequilibrados y breve nociones sobre validación experimental.
+
+La segunda parte se divide en tres bloques. El primer bloque se explora como inyectar aleatoriedad en el propio algoritmo del clasificador base, para ello utilizan la fase constructiva de la metaheurística GRASP. Esta técnica, llamada “\textit{GRASP Forest}” ha sido utilizada con éxito en árboles de clasificación y árboles de regresión. Se desarrolla un segundo método “\textit{GAR-Forest}”, \textit{GRASP with annealed randomness}, que parte de la idea de que los nodos que más influencia tienen en la correcta clasificación de las instancias son los nodos inferiores y hojas, mientras que los nodos que más afectan la estructura global del árbol (y por lo tanto la diversidad) son la raíz y los nodos superiores.
+
+En un segundo bloque se aborda el problema de los \textit{ensembles} para conjuntos desequilibrados. Se presenta un método llamado “\textit{Random Balance}”, basado en la idea de variar aleatoriamente las proporciones entre las clases, confiando en esta heurística, se elimina la necesidad de ajustar parámetros, a la vez que se aumenta la diversidad del \textit{ensemble}.
+
+En la última parte aplican estas técnicas a la solución de varias aplicaciones reales.
+

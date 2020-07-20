@@ -1,0 +1,309 @@
+\apendice{Documentación técnica de programación}
+
+\section{Introducción}
+
+En esta sección se describe la documentación técnica de programación incluyendo la instalación del entorno de desarrollo, la estructura de la aplicación, su compilación y las baterías de pruebas realizadas.
+
+\section{Estructura de directorios}
+
+Para ejecutar este programa, todos los archivos tienen que estar en el mismo directorio, sin importar exactamente la localización en los archivos.
+
+Los modelos que genera se van a guardar en ``directorio de los archivos/logs/gdxray'' creando una carpeta por cada vez que se ejecuta el entrenamiento, el nombre de esta carpeta se compone por: gdxray + ``la fecha de creación'' + T + ``hora de creación'' (ejemplo, el archivo ``gdxray20200508T1627'' se creó el día 8 de mayo del 2020 a las 16:27 horas).
+
+Las imágenes deben estar guardadas en el directorio ``C:/Users/nombre usuario/data/GDXray/Castings/Cssss'' donde ``C'' proviene de ``\textit{Casting}'' y ``ssss'' es el número de serie del grupo de imágenes. Las imágenes de una serie se almacenan en el archivo Cssss\_nnnn.png donde ``nnnn'' corresponde al número de la imagen de rayos-x de esta serie. En total hay 67 capetas. Dentro de algunas de estas carpetas hay una carpeta llamada ``mask'' con las máscaras de todas las imágenes que se encuentren en la carpeta y un archivo ``ground\_truth.txt'' con las posiciones de los errores.
+
+Estas direcciones son opcionales, es decir, al entrenar tú puedes asignar la dirección donde guarde los modelos y la dirección de donde coja las imágenes, pero son las recomendadas.
+
+\begin{figure}[h]
+	\dirtree{%
+		.1 /.
+		.2 doc.
+		.3 plantillaLatex.
+		.4 img.
+		.4 tex.
+		.2 data.
+		.3 GDXray.
+		.4 Castings.
+		.5 C0001. .6 masks.
+		.5 C0002. .6 masks.
+		.5 C0003.
+		.5 C0004.
+		.5 ...
+		.5 C0064.
+		.5 C0065. .6 masks.
+		.5 C0066.
+		.5 C0067.
+		.2 assets.
+		.2 logs.
+		.3 gdxray.
+		.4 gdxray20200609T2207.
+		.2 metadata.
+		.3 gdxray.
+	}
+	\caption{Directorios del proyecto}
+	\label{directoriosdelproyecto}
+\end{figure}
+
+\newpage
+
+\section{Manual del programador}
+
+El siguiente apartado tiene como objetivo servir de referencia a futuros programadores que trabajen en la aplicación.
+
+\subsection{Entorno del proyecto}
+
+Empezamos explicando el entorno en el que está realizado el proyecto.
+
+\begin{itemize}
+    \item \textbf{Ordenador portátil:} Aspire ES1-521. Memoria 16GB RAM. Procesador AMD A6-6310 APU con AMD Radeon R4 Graphics, 1800 Mhz. 64 bit.
+    \begin{itemize}
+        \item \textbf{Sistema operativo:} Microsoft Windows. Versión 10.0.18362.752.
+    \end{itemize}
+    
+    \item \textbf{Ordenador Alpha:} Procesador Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz. 64 bit.
+    \begin{itemize}
+        \item \textbf{Sistema operativo:} GNU/Linux. Versión 4.15.0-88-generic. Ubuntu 7.4.0-1ubuntu1~18.04.1.
+    \end{itemize}
+    \item \textbf{\textit{Python}:} Versión 3.6.5 Anaconda Custom.
+    \item \textbf{Anaconda:} Versión 4.8.2.
+    \item \textbf{\textit{Spyder}:} Versión 3.3.6.
+    \item Los demás requerimientos del proyecto se comentarán en la sección \ref{com_ins_eje}.
+\end{itemize}
+
+\subsubsection{Python}
+
+El proyecto de que he partido está programado en \textit{Python} por lo que yo he continuado usando este lenguaje. También \textit{Python} es el lenguaje más popular a la hora de programar inteligencia artificial.
+
+\subsubsection{Spyder}
+
+Para trabajar con \textit{Python} he utilizado el entorno \textit{Spyder} que es un entorno de desarrollo integrado multiplataforma de código abierto (IDE).
+
+Para realizar la aplicación he utilizado la librería \textit{Tkinter} que es una interfaz gráfica de usuario (GUI) para \textit{Python} muy popular.
+
+\subsection{Archivos y notebooks}
+
+Comentaremos que se realiza en cada archivo \textit{.py} y \textit{notebook} del proyecto.
+
+\begin{itemize}
+    \item \texttt{app.py}: En este archivo tenemos todo el código de la aplicación. Se crea la interfaz de la aplicación, se crea el modelo con que él se van a detectar los defectos y carga la imagen. Para ello se instalan todas las librerías necesarias como \textit{Tkinter} o cv2 y también se importan las clases y funciones de los archivos \texttt{utils}, \texttt{visualize}, \texttt{model}, \texttt{gdxray}.
+    \item \texttt{check.py}: En este archivo se cargan las imágenes de entrenamiento y se muestran con los \textit{bounding box} dado por el conjunto de datos, en otras palabras, se representan los defectos reales de las piezas.
+    \item \texttt{coco.py}: En este archivo se carga un subconjunto del conjunto de datos COCO, explicado en la memoria en el apartado 3.3. Puedes auto descargar el conjunto de datos, entrenarlo y evaluarlo.
+    \item \texttt{config.py}: En este archivo se declaran las variables globales que se van a utilizar en todo el proyecto.
+    \item \texttt{environment.yml}: En este archivo es el utilizado para crear el entorno virtual de trabajo, dentro nos encontramos con el nombre que va a recibir este entorno y todas las dependencias que se van a instalar en él.
+    \item \texttt{gdxray.py}: En este archivo se cargan las imágenes de entrenamiento o testeo, depende de la opción con la que lo ejecute. Prepara todo el subconjunto de datos para llamar al modelo (en el archivo \texttt{model.py} para entrenar la red.
+    \item \texttt{inspect\_data.ipynb}: En este \textit{notebook} se inspecciona y visualiza el código de carga y preprocesamiento de datos.
+    \item \texttt{inspect\_model.ipynb}: Este \textit{notebook} incluye código y visualizaciones para probar, depurar y evaluar el modelo.
+    \item \texttt{inspect\_weights.ipynb}: Este \textit{notebook} incluye código y visualizaciones para probar, depurar y evaluar los pesos del modelo.
+    \item \texttt{mask\_rcnn\_coco.h5}: Este archivo es el modelo de Mask R-CNN en Python 3 que hemos utilizado para el primer entrenamiento.
+    \item \texttt{model.py}: En este archivo se crea el modelo con los pesos y se entrena. Este es llamado siempre por el archivo \texttt{gdxray.py} ya que es el que carga las imágenes que el modelo necesita para entrenar.
+    \item \texttt{preprocessing.py}: En este archivo se preprocesan los datos, es decir, cambian algunos datos para que el trato con ellos sea más cómodo. Por ejemplo, la función \texttt{prepare\_welding()} se recorta las imágenes y las máscaras a 768 píxeles de ancho, se renombran y se genera un archivo de metadatos con los nuevos.
+    \item \texttt{utils.py}: En este archivo tenemos las funciones y clases de utiliza comunes en el proyecto. Tenemos la clase \texttt{Dataset} que es la clase base para el conjunto de datos, en ella se crean añaden las imágenes, se crean las clases del conjunto de datos con las que se trabaja (``\textit{Casting}'', ``\textit{Welding}'' y ``\textit{Background}'') y se prepara el conjunto de datos para su uso (guarda en las variables globales los datos que se necesitan), entre otras funciones. También tenemos las funciones de \texttt{resize\_mask()} y \texttt{resize\_image()} que redimensionan las máscaras y las imágenes para que todas sean del mismo tamaño.
+    \item \texttt{visualize.py}: En este archivo tenemos las funciones de visualización de las imágenes y las estadísticas de los pesos y las máscaras de una imagen.
+\end{itemize}
+
+\section{Compilación, instalación y ejecución del proyecto \label{com_ins_eje}}
+
+A la hora de instalar este proyecto hay que tener instalado \textit{Python3}. Tras haber descargado los archivos del proyecto, las imágenes y la implementación de \textit{Mask R-CNN} en \textit{Python} 3, \textit{Keras} y \textit{TensorFlow} se debe crear un entorno de \textit{Python} para instalar las librerías necesarias en él con el comando ``\texttt{conda env create -f environment.yml -n defect-detection}'', en este archivo aparecen todas las dependencias del entorno.
+
+Este comando, aunque me creaba el entorno correctamente había algunas librerías que no se me instalaban por lo que a continuación debía entrar en el entorno con ``\texttt{conda activate defect-detection}'' e instalarlas manualmente. Las dos librerías que no se instalaban eran, \texttt{OpenCV} y \texttt{TensorFlow}.
+
+Con ``\texttt{pip install opencv-python}'' instalé \texttt{OpenCV} y para la librería de \texttt{TensorFlow} primero compruebo si hay ya instalada alguna versión, en una ocasión se descargaron varios paquetes de la librería, pero no todos, para borrarla e instarla una que funcione con ``\texttt{pip install tensorflow==1.3.0}'', esta librería debía tener una versión superior a la 1.3.
+
+\subsection{Comandos seguidos}
+
+Se debe de tener en cuenta que las palabras comprendidas entre las comillas pueden dar error al ejecutar, si es así, cambie las comillas del texto copiado y ponga la comilla simple que se encuentra en el teclado junto a signo de interrogación del final de las oraciones.
+
+Aquí tendremos los comandos que he seguido para empezar con el proyecto y los comando para la ejecución del final de proyecto.
+
+\subsubsection{Descarga\label{descarga}}
+
+Primero se clona el repositorio con los archivos de proyecto.
+
+\begin{itemize}
+    \tightlist
+    \item git clone \url{https://github.com/nuf1001/XRayDetector}
+\end{itemize}
+
+También se pueden descargar del proyecto original si se tiene algún problema.
+
+\begin{itemize}
+    \tightlist
+    \item git clone \url{https://github.com/maxkferg/metal-defect-detection}
+\end{itemize}
+
+Si lo que quiere es entrenar al descargar el repositorio anterior debe descargar también el modelo \texttt{mask\_rcnn\_coco.h5} ya que no se encuentra en él.
+
+\begin{itemize}
+    \tightlist
+    \item wget \url{https://github.com/matterport/Mask\_RCNN/releases/download/v2.0/mask\_rcnn\_coco.h5}
+\end{itemize}
+
+A continuación, descargamos las imágenes con las que trabajaremos. Como es un archivo muy grande te pide una doble confirmación para descargarlo ya que no se puede examinar para buscar virus. Para solucionar esto se ejecutan dos comandos, el primero para pedir que descargar el archivo y guardar una autorización en el archivo \texttt{cookies.txt} y el segundo para confirmar con este archivo que quiere descargarlo. Por último, es sólo descomprimir el archivo que se ha descargado.
+
+\begin{itemize}
+    \tightlist
+    \item wget --save-cookies cookies.txt --keep-session-cookies --no-check-certificate `\url{https://docs.google.com/uc?export=download\&id=143893UAlc7TB_ZiTGlg9S9w4rp3wHlji}' -O- | sed -rn 's/.*confirm=([0-9A-Za-z\_]+).*/Code: \textbackslash{}1\textbackslash{}n/p'
+    \item wget --load-cookies cookies.txt `\url{https://docs.google.com/uc?export=download\&confirm=S3q0\&id=143893UAlc7TB_ZiTGlg9S9w4rp3wHlji}' -O Cast
+    \item unzip Cast
+\end{itemize}
+
+\subsubsection{Instalación\label{instalacion}}
+
+Primero creamos el entorno virtual en el que vamos a trabajar y lo activamos.
+
+\begin{itemize}
+    \tightlist
+    \item conda env create -f environment.yml -n defect-detection
+    \item conda activate defect-detection
+\end{itemize}
+
+Como ya se ha explicado el entorno no se crea perfectamente, le faltan algunas librerías de instalar, tras la activación del entorno las instalamos.
+
+\begin{itemize}
+    \tightlist
+    \item pip install opencv-python
+\end{itemize}
+
+En ocasiones \texttt{TensorFlow} ya está instalado, pero con una versión que no vale. Por lo tanto, primero debemos comprobar si está instalado o no y en el primer caso desinstalarlo para instalar una versión que sí que valga.
+
+\begin{itemize}
+    \tightlist
+    \item python3 -c `import tensorflow as tf; print(tf.\_\_version\_\_)'
+    \item pip uninstall tensorflow
+    \item pip install tensorflow==1.3.0
+\end{itemize}
+
+\subsubsection{Entrenamiento}
+
+En este comando hay que comprobar que los archivos que está utilizando se encuentran en las carpetas a las que nos estamos dirigiendo, si alguno falla el entrenamiento no se llevará a cabo.
+
+\begin{itemize}
+    \tightlist
+    \item python gdxray.py train --dataset=~/data/GDXray --series=Castings --model=mask\_rcnn\_coco.h5 --logs=logs/gdxray --download=True
+\end{itemize}
+
+\subsubsection{Evaluación}
+
+En este comando pasa lo mismo que en el anterior. Lo que más hay que tener en cuenta es la carpeta donde se va a encontrar el modelo que vamos a evaluar.
+
+\begin{itemize}
+    \tightlist
+    \item python gdxray.py evaluate --dataset=~/data/GDXray --series=Castings --logs=logs/gdxray --model=~/path/to/trained/model --limit=10
+\end{itemize}
+
+\subsubsection{Ejecutar la aplicación}
+
+Para ejecutar la aplicación debes estar en el entorno que hemos creado en los pasos anteriores.
+
+\begin{itemize}
+    \tightlist
+    \item python app.py
+\end{itemize}
+
+\section{Pruebas del sistema}
+
+\subsection{Datos de entrenamiento}
+
+En este apartado se realizarán varias pruebas al conjunto de datos que tenemos.
+
+\newpage
+
+\subsubsection{Imágenes y máscaras}
+
+\imagen{muestra_img_mask}{Imágenes y sus máscaras con los defectos\label{muestra_img_mask}}
+
+En la figura \ref{muestra_img_mask} tenemos tres ejemplos de imágenes con sus máscaras correspondientes. Las imágenes de la derecha son las máscaras, las manchas blancas o azul claro son donde se encuentran los defectos en la imagen original.
+
+\subsubsection{\textit{Bounding Boxes}}
+
+En este apartado calculamos los cuadros delimitadores a partir de máscaras en lugar de utilizar las coordenadas del cuadro delimitador proporcionadas por los conjuntos de datos de origen. Esto nos permite manejar los cuadros delimitadores de forma coherente, independientemente del conjunto de datos de origen, y también hace que sea más fácil cambiar el tamaño, rotar o recortar imágenes porque simplemente generamos los cuadros delimitadores a partir de las máscaras de actualizaciones.
+
+\imagen{pruebas_bounding_box}{Imagen con el cuadro delimitador calculado a partir de la máscara \label{pruebas_bounding_box}}
+
+\imagen{codigo_pruebas_bounding_box}{El código para la visualización de la figura \ref{pruebas_bounding_box}}
+
+\subsubsection{Cambiar el tamaño de las imágenes}
+
+Las imágenes se redimensionan a un tamaño (1024x1024), teniendo en cuenta la relación de aspecto, esta se conserva. Si una imagen no es cuadrada, se agrega relleno cero en la parte superior e inferior o derecha e izquierda, en otras palabras, se agregan márgenes negros a las imágenes donde sea necesario para que sean cuadradas.
+
+\imagen{pruebas_resize_images}{Imagen redimensionada a (1024x1024) \label{pruebas_resize_images}}
+
+\imagen{codigo_pruebas_resize_images}{El código para la visualización de la figura \ref{pruebas_resize_images}}
+
+\subsubsection{Mini Máscaras}
+
+Las máscaras binarias de instancias pueden crecer cuando se entrena con imágenes de alta resolución. Por ejemplo, si se entrena con una imagen de 1024x1024, la máscara de una sola instancia requiere 1 MB de memoria (\textit{NumPy} usa bytes para valores booleanos). Si una imagen tiene 100 instancias, eso es 100 MB solo para las máscaras.
+
+Para mejorar la velocidad del entrenamiento, optimizamos las máscaras mediante:
+
+\begin{itemize}
+    \item Almacenamos píxeles de máscara que están dentro del cuadro delimitador de objetos, en lugar de una máscara de la imagen completa. La mayoría de los objetos son pequeños en comparación con el tamaño de la imagen, por lo que ahorramos espacio al no almacenar muchos ceros alrededor del objeto.
+    \item Cambiamos el tamaño de la máscara a un tamaño más pequeño (por ejemplo, 56x56). Para los objetos que son más grandes que el tamaño seleccionado, perdemos un poco de precisión. Pero la mayoría de las anotaciones de objetos no son muy precisas, por lo que esta pérdida es insignificante para la mayoría de los propósitos prácticos. El tamaño de mini\_mask se puede establecer en la clase de configuración.
+\end{itemize}
+
+\imagen{mini_mask_1}{Imagen de prueba con máscaras correspondientes \label{mini_mask_1}}
+
+\imagen{imagen_mini_mask_1}{Imagen de prueba con los \textit{bounding box} de esas máscaras \label{imagen_mini_mask_1}}
+
+\imagen{codigo_mini_mask_1}{El código para la visualización de las figuras \ref{mini_mask_1} y \ref{imagen_mini_mask_1}}
+
+\imagen{mini_mask_2}{Imagen de prueba con sus mini máscaras correspondientes \label{mini_mask_2}}
+
+\imagen{imagen_mini_mask_2}{Imagen de prueba con los \textit{bounding box} de esas mini máscaras \label{imagen_mini_mask_2}}
+
+\imagen{codigo_mini_mask_2}{El código para la visualización de las figuras \ref{mini_mask_2} y \ref{imagen_mini_mask_2}}
+
+\newpage
+
+\subsubsection{Anchors}
+
+Es importante usar el mismo orden de las anclas en las fases de entrenamiento y predicción. Y debe coincidir con el orden de ejecución de la convolución.
+
+Para una red FPN como la nuestra, los anclajes deben ordenarse de manera que sea fácil hacer coincidir los anclajes con la salida de las capas de convolución que predicen las puntuaciones y los cambios de los anclajes.
+
+Primero los ordenaremos por nivel de pirámide, es decir, todos los anclajes del primer nivel, luego todos los del segundo y así sucesivamente. Dentro de cada nivel, las anclas están clasificadas por secuencia de procesamiento del mapa de características. Normalmente, una capa de convolución procesa un mapa de características que comienza desde arriba a la izquierda y se mueve a la derecha fila por fila.
+
+\textbf{Paso de anclaje:} en la arquitectura FPN, los mapas de características en las primeras capas son de alta resolución. Por ejemplo, si la imagen de entrada es 1024x1024, el conjunto de características de la primera capa es 256x256, lo que genera unos 200K anclajes. Estos anclajes son de 32x32 píxeles y su zancada con respecto a los píxeles de la imagen es de 4 píxeles, por lo que hay mucha superposición.
+
+Podemos reducir la carga significativamente si generamos anclajes para cada otra celda en el mapa de características, por ejemplo, con una zancada de 2 el número de anclas se reducirá en 4.
+
+Vemos la configuración de las anclas de nuestro proyecto en la tabla \ref{configuracionanclas}.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{l l}
+			Número de anclas & 147312\\
+			Escalas & (16, 32, 64, 128, 256)\\
+			Proporción & [0.5, 1, 2]\\
+			Anclas por celda & 3\\
+			Niveles & 5\\
+			Anclas en el nivel 0 & 110592\\
+			Anclas en el nivel 1 & 27648\\
+			Anclas en el nivel 2 & 6912\\
+			Anclas en el nivel 3 & 1728\\
+			Anclas en el nivel 4 & 432\\
+		\end{tabular}
+		\caption{Configuración de las anclas}
+		\label{configuracionanclas}
+	\end{center}
+\end{table}
+
+Visualizaremos los anclajes de una celda en el centro del mapa de características de un nivel específico. Las formas del mapa de características de los niveles serán las reflejadas en la tabla \ref{formadelmapadecaracterísticas}.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{l l}
+			Nivel 0 & [192 192]\\
+			Nivel 1 & [96 96]\\
+			Nivel 2 & [48 48]\\
+			Nivel 3 & [24 24]\\
+			Nivel 4 & [12 12]\\
+		\end{tabular}
+		\caption{Forma del mapa de características}
+		\label{formadelmapadecaracterísticas}
+	\end{center}
+\end{table}
+
+\imagen{imagen_anclas}{Imagen con sus anclajes \label{imagen_anclas}}
+
+\imagen{codigo_anclas}{El código para la visualización de la figura \ref{imagen_anclas} \label{codigo_anclas}}
