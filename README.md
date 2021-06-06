@@ -1,4 +1,4 @@
-# Detección de defectos en piezas metálicas a partir de imágenes de radiografía
+# Detección de defectos en piezas metálicas a partir de imágenes de radiografía  
 
 Autora: Noelia Ubierna Fernández
 Turores: D. José Francisco Díez Pastor
